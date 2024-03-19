@@ -1,0 +1,43 @@
+server:
+  servlet:
+    context-path: /
+  port: 8082
+
+spring:
+  application:
+    name: MES-KAFKA-SERVICE
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+
+swagger:
+  host: http://localhost:8080
+
+ribbon:
+  ReadTimeout: 160000000
+  ConnectTimeout: 160000000
+
+eureka:
+  instance:
+    hostname: localhost
+
+openapi:
+  service:
+    title: Kafka service doc #title that you will want to display in the swagger ui
+    version: 1.0.0
+    url: http://localhost:8080/kafka #api gateway url
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs #these urls will used to load the swagger ui of this service by the api gateway
+  swagger-ui:
+    path: /swagger-ui.html
+
+topic:
+  test:
+    name: test-topic
+    group-id: test

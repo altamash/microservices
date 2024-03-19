@@ -1,0 +1,61 @@
+server:
+  servlet:
+    context-path: /
+  port: 8080
+
+spring:
+  application:
+    name: MES-SERVICE-GATEWAY
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+    config:
+      import-check:
+        enabled: false
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - name: API Gateway Service
+        primaryName: API Gateway Service
+        url: /v3/api-docs
+      - name: Sample Service
+        primaryName: Sample Service
+        url: /v3/api-docs/sample
+      - name: Kafka Service
+        primaryName: Kafka Service
+        url: /v3/api-docs/kafka
+  swagger-ui.doc-expansion: none
+
+#eureka:
+#  instance:
+#    hostname: localhost
+
+service:
+  name:
+    test: MES-SERVICE
+    kafka: MES-KAFKA-SERVICE
+
+swagger:
+  host: http://localhost:8080
